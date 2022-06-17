@@ -12,12 +12,7 @@ update() {
 	rm ${APP_FOLDER}
 	echo "Current version $APP_NAME was deleted"
   fi
-  wget -q ${APP_DOWNLOAD_URL} -O ${APP_FOLDER} 
-  for number in 10 20 30 40 50 60 70 80 90 100
-  do
-  echo $number "%"
-  sleep 0.2
-  done
+  wget -q  ${APP_DOWNLOAD_URL} -O ${APP_FOLDER} 
   if test -f "$APP_FOLDER"; then
         echo "Last version $APP_NAME was downloaded"
 	echo -n "${APP_NAME} last change time: "
