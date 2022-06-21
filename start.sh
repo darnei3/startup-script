@@ -16,9 +16,9 @@ update() {
   download
   if test -f "$APP_FOLDER"; then
     echo "Last version $APP_NAME was downloaded"
-	echo -n "${APP_NAME} last change time: "
-  stat -c '%y' ${APP_FOLDER}
-	echo "UPDATE WAS SUCCESSFUL"
+    echo -n "${APP_NAME} last change time: "
+    stat -c '%y' ${APP_FOLDER}
+    echo "UPDATE WAS SUCCESSFUL"
   fi
   start
 }
@@ -30,7 +30,9 @@ backup(){
 }
 
 download(){
-  wget -q  ${APP_DOWNLOAD_URL} -O ${APP_FOLDER}
+  if test -f "$APP_FOLDER"; then
+    wget -q  ${APP_DOWNLOAD_URL} -O ${APP_FOLDER}
+  fi
 }
 
  # Использовать инструкции, используемые для запроса входных параметров
