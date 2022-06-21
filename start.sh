@@ -15,7 +15,6 @@ update() {
   fi
   download
   if test -f "$APP_FOLDER"; then
-    echo "Last version $APP_NAME was downloaded"
     echo -n "${APP_NAME} last change time: "
     stat -c '%y' ${APP_FOLDER}
     echo "UPDATE WAS SUCCESSFUL"
