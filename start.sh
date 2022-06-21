@@ -1,15 +1,16 @@
 #!/bin/bash
 # Здесь можно заменить на свою программу выполнения, другие коды менять не нужно
-name="demo-0.0.1.jar"
-downloadurl=http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar
 #jarpath="/home/dev/demo/demo-0.0.1.jar"
+
+name="demo-0.0.1.jar"
 basedir="/home/dev/demo"
 backupdir="/home/dev/demo/backup"
+downloadurl="http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar"
+
 currentdate=""$(date +%Y-%m-%d-%H-%M)
 
 update() {
   stop
-  echo "${name} is not working"
   backup
   rm ${basedir}/${name}
   download
@@ -62,7 +63,11 @@ start(){
   if [ $? -eq "0" ]; then
     echo "${name} is already running. pid=${pid} ."
   else
-    nohup java  -Xms512m -Xmx1024m -XX:NewRatio=2 -XX:SurvivorRatio=8 -XX:+PrintGCDetails -XX:+UseSerialGC -jar ${basedir}/${name} > log.txt &
+    if ! [ -d ${basedir}/logs ]; then
+      mkdir ${basedir}/logs
+      echo "The directory for the logs was created by ${basedir}/logs"
+    fi
+    nohup java  -Xms512m -Xmx1024m -XX:NewRatio=2 -XX:SurvivorRatio=8 -XX:+PrintGCDetails -XX:+UseSerialGC -jar ${basedir}/${name} > ${basedir}/logs/log.txt &
     echo "${name} was started"
   fi
 }
@@ -72,6 +77,7 @@ stop(){
   is_exist
   if [ $? -eq "0" ]; then
     kill -9 $pid
+    echo "${name} was stopped"
   else
     echo "${name} is not running"
   fi
