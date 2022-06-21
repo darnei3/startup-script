@@ -13,18 +13,12 @@ currentdate=""$(date +%Y-%m-%d-%H-%M)
 
 
 
-test(){
-  wget -q ${downloadurl} /home/dw/
-  echo "Я тут типо"
-}
-
-
-
 update() {
-  stop
-  backup
-  rm ${basedir}/${name}
   download
+  backup
+  stop
+  rm ${basedir}/${name}
+  mv ${basedir}/temp/${name} ${basedir}/${name}
   if test -f "${basedir}/${name}"; then
     echo -n "${name} last change time: "
     stat -c '%y' ${basedir}/${name}
@@ -46,8 +40,9 @@ download(){
   if test -f ${basedir}/${name}; then
     echo "$name already downloaded"
   else
-    wget -q  ${downloadurl} -O ${basedir}/${name}
-    echo "Last version $name was downloaded"
+    mkdir ${basedir}/temp
+    wget -q  ${downloadurl} -O ${basedir}/temp/${name}
+    echo "Last version $name was downloaded to ${basedir}/temp"
   fi
 }
 
@@ -114,9 +109,6 @@ restart(){
 case "$1" in
 "start")
 start
-;;
-"test")
-test
 ;;
 "update")
 update
