@@ -26,7 +26,7 @@ backup(){
     mkdir -p ${backupdir}/${currentdate}/
     #mv ${basedir}/${name} ${backupdir}/${currentdate}/${name}
     copy ${basedir}/${name} ${backupdir}/${currentdate}/${name}
-    echo "Current version ${name} was moved to ${backupdir}/${currentdate}"
+    echo "Current version ${name} was copied to ${backupdir}/${currentdate}"
   fi
 }
 
