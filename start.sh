@@ -5,9 +5,7 @@
 name="demo-0.0.1.jar"
 basedir="/home/dev/demo"
 backupdir="/home/dev/demo/backup"
-downloadurl=http://192.168.178.38:8081/repository/test/123/123/123/123-123.txt
-
-#"http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar"
+downloadurl="http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar"
 
 currentdate=""$(date +%Y-%m-%d-%H-%M)
 
