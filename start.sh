@@ -25,7 +25,7 @@ backup(){
   if test -f ${basedir}/${name}; then
     mkdir -p ${backupdir}/${currentdate}/
     #mv ${basedir}/${name} ${backupdir}/${currentdate}/${name}
-    copy ${basedir}/${name} ${backupdir}/${currentdate}/${name}
+    cp ${basedir}/${name} ${backupdir}/${currentdate}/${name}
     echo "Current version ${name} was copied to ${backupdir}/${currentdate}"
   fi
 }
