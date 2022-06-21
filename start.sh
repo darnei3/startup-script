@@ -2,7 +2,7 @@
 # Здесь можно заменить на свою программу выполнения, другие коды менять не нужно
 name="demo-0.0.1.jar"
 downloadurl=http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar
-jarpath="/home/dev/demo/demo-0.0.1.jar"
+#jarpath="/home/dev/demo/demo-0.0.1.jar"
 basedir="/home/dev/demo"
 backupdir="/home/dev/demo/backup"
 currentdate=""$(date +%Y-%m-%d-%H-%M)
