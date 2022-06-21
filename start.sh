@@ -1,11 +1,11 @@
 #!/bin/bash
 # Здесь можно заменить на свою программу выполнения, другие коды менять не нужно
 APP_NAME=demo-0.0.1.jar
-APP_DOWNLOAD_URL=http://192.168.1.7:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar
+APP_DOWNLOAD_URL=http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar
 APP_FOLDER=/home/dev/demo/demo-0.0.1.jar
 APP_DIRECTORY=/home/dev/demo/
 BACKUP_DIR=/home/dev/demo/backup/
-CURRENT_DATE=`date +%y%m%d%H%M%S`
+CURRENT_DATE=$(date +%Y-%m-%d)
 
 update() {
   stop
