@@ -5,7 +5,7 @@ APP_DOWNLOAD_URL=http://192.168.178.38:8081/repository/demo-repository/com/examp
 APP_FOLDER=/home/dev/demo/demo-0.0.1.jar
 APP_DIRECTORY=/home/dev/demo/
 BACKUP_DIR=/home/dev/demo/backup/
-CURRENT_DATE=$(date +%Y-%m-%d)
+CURRENT_DATE=$(date +%Y-%m-%d-%H-%M)
 
 update() {
   stop
@@ -26,7 +26,7 @@ update() {
 backup(){
   mkdir -p ${BACKUP_DIR}/${CURRENT_DATE}/
   mv ${APP_FOLDER} ${BACKUP_DIR}/${CURRENT_DATE}/${APP_NAME}
-	echo "Current version $APP_NAME was moved to $BACKUP_DIR/$CURRENT_DATE"
+	echo "Current version $APP_NAME was moved to $BACKUP_DIR$CURRENT_DATE"
 }
 
 
