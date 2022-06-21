@@ -1,39 +1,39 @@
 #!/bin/bash
 # Здесь можно заменить на свою программу выполнения, другие коды менять не нужно
-APP_NAME=demo-0.0.1.jar
-APP_DOWNLOAD_URL=http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar
-APP_FOLDER=/home/dev/demo/demo-0.0.1.jar
-APP_DIRECTORY=/home/dev/demo/
-BACKUP_DIR=/home/dev/demo/backup/
-CURRENT_DATE=$(date +%Y-%m-%d-%H-%M)
+name="demo-0.0.1.jar"
+downloadurl=http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar
+jarpath="/home/dev/demo/demo-0.0.1.jar"
+basedir="/home/dev/demo"
+backupdir="/home/dev/demo/backup"
+currentdate=""$(date +%Y-%m-%d-%H-%M)
 
 update() {
   stop
-  echo "${APP_NAME} is not working"
-  if test -f "$APP_FOLDER"; then
+  echo "${name} is not working"
+  if test -f ${basedir}/${name}; then
     backup
   fi
   download
-  if test -f "$APP_FOLDER"; then
-    echo -n "${APP_NAME} last change time: "
-    stat -c '%y' ${APP_FOLDER}
+  if test -f "${basedir}/${name}"; then
+    echo -n "${name} last change time: "
+    stat -c '%y' ${basedir}/${name}
     echo "UPDATE WAS SUCCESSFUL"
   fi
   start
 }
 
 backup(){
-  mkdir -p ${BACKUP_DIR}/${CURRENT_DATE}/
-  mv ${APP_FOLDER} ${BACKUP_DIR}/${CURRENT_DATE}/${APP_NAME}
-	echo "Current version $APP_NAME was moved to $BACKUP_DIR$CURRENT_DATE"
+  mkdir -p ${backupdir}/${currentdate}/
+  mv ${basedir}/${name} ${backupdir}/${currentdate}/${name}
+	echo "Current version ${name} was moved to $backupdir$currentdate"
 }
 
 download(){
-  if test -f "$APP_FOLDER"; then
-    echo "$APP_NAME already downloaded"
+  if test -f ${basedir}/${name}; then
+    echo "$name already downloaded"
   else
-    wget -q  ${APP_DOWNLOAD_URL} -O ${APP_FOLDER}
-    echo "Last version $APP_NAME was downloaded"
+    wget -q  ${downloadurl} -O ${basedir}/${name}
+    echo "Last version $name was downloaded"
   fi
 }
 
@@ -45,7 +45,7 @@ exit 1
 
  # Проверить, запущена ли программа
 is_exist(){
-  pid=`ps -ef|grep $APP_NAME|grep -v grep|awk '{print $2}' `
+  pid=`ps -ef|grep $name|grep -v grep|awk '{print $2}' `
   # Если нет возврата 1, вернуть 0, если он существует
   if [ -z "${pid}" ]; then
     return 1
@@ -58,10 +58,10 @@ is_exist(){
 start(){
   is_exist
   if [ $? -eq "0" ]; then
-    echo "${APP_NAME} is already running. pid=${pid} ."
+    echo "${name} is already running. pid=${pid} ."
   else
-    nohup java  -Xms512m -Xmx1024m -XX:NewRatio=2 -XX:SurvivorRatio=8 -XX:+PrintGCDetails -XX:+UseSerialGC -jar /home/dev/demo/$APP_NAME > log.txt &
-    echo "${APP_NAME} was started"
+    nohup java  -Xms512m -Xmx1024m -XX:NewRatio=2 -XX:SurvivorRatio=8 -XX:+PrintGCDetails -XX:+UseSerialGC -jar ${basedir}/${name} > log.txt &
+    echo "${name} was started"
   fi
 }
 
@@ -71,7 +71,7 @@ stop(){
   if [ $? -eq "0" ]; then
     kill -9 $pid
   else
-    echo "${APP_NAME} is not running"
+    echo "${name} is not running"
   fi
 }
 
@@ -79,9 +79,9 @@ stop(){
 status(){
   is_exist
   if [ $? -eq "0" ]; then
-    echo "${APP_NAME} is running. Pid is ${pid}"
+    echo "${name} is running. Pid is ${pid}"
   else
-    echo "${APP_NAME} is NOT running."
+    echo "${name} is NOT running."
   fi
 }
 
