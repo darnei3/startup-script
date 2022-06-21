@@ -31,6 +31,8 @@ backup(){
 
 download(){
   if test -f "$APP_FOLDER"; then
+    echo "$APP_NAME already downloaded"
+  else
     wget -q  ${APP_DOWNLOAD_URL} -O ${APP_FOLDER}
     echo "Last version $APP_NAME was downloaded"
   fi
