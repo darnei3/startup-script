@@ -37,10 +37,15 @@ backup(){
 }
 
 download(){
+  if [ -d "${basedir}/temp" ]; then
+    echo "${basedir}/temp will used for download"
+  else
+    mkdir ${basedir}/temp
+    echo "${basedir}/temp created and will used for download"
+  fi
   if test -f ${basedir}/temp/${name}; then
     echo "$name already downloaded"
   else
-    mkdir ${basedir}/temp
     wget -q  ${downloadurl} -O ${basedir}/temp/${name}
     echo "Last version $name was downloaded to ${basedir}/temp"
   fi
