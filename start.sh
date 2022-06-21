@@ -5,9 +5,20 @@
 name="demo-0.0.1.jar"
 basedir="/home/dev/demo"
 backupdir="/home/dev/demo/backup"
-downloadurl="http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar"
+downloadurl="https://downloader.disk.yandex.ru/disk/b2445131bfba7cb5c251d1647e6b2ca6a3714a897f1ca5c84b8813a414bd75c9/62b214be/Mg2J5YGTNLNA2fIKEpCbggwXkCT-hsEw-2j4qV3B-KRoUfHvN0YQ7YLxDQRNxTO5InmHus5VT_TNgagO18GQEg%3D%3D?uid=0&filename=FNF%20RUS.rar&disposition=attachment&hash=IRHGpxbE%2Bf6iCfHsQaarT7c5xwMmJ6skTWNSFdJ7cUl2ctb6AMaP8q92l7dCXMgZq/J6bpmRyOJonT3VoXnDag%3D%3D&limit=0&content_type=application%2Fx-rar&owner_uid=845034015&fsize=140161374&hid=d2a522c135686f0c46f6d3fc98602204&media_type=compressed&tknv=v2"
+
+#"http://192.168.178.38:8081/repository/demo-repository/com/example/demo/0.0.1/demo-0.0.1.jar"
 
 currentdate=""$(date +%Y-%m-%d-%H-%M)
+
+
+
+test(){
+  wget -q ${downloadurl} /home/dw/
+  echo "Я тут типо"
+}
+
+
 
 update() {
   stop
@@ -103,6 +114,9 @@ restart(){
 case "$1" in
 "start")
 start
+;;
+"test")
+test
 ;;
 "update")
 update
