@@ -37,7 +37,7 @@ backup(){
 }
 
 download(){
-  if test -f ${basedir}/${name}; then
+  if test -f ${basedir}/temp/${name}; then
     echo "$name already downloaded"
   else
     mkdir ${basedir}/temp
