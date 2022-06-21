@@ -10,9 +10,8 @@ currentdate=""$(date +%Y-%m-%d-%H-%M)
 update() {
   stop
   echo "${name} is not working"
-  if test -f ${basedir}/${name}; then
-    backup
-  fi
+  backup
+  rm ${basedir}/${name}
   download
   if test -f "${basedir}/${name}"; then
     echo -n "${name} last change time: "
@@ -23,9 +22,12 @@ update() {
 }
 
 backup(){
-  mkdir -p ${backupdir}/${currentdate}/
-  mv ${basedir}/${name} ${backupdir}/${currentdate}/${name}
-	echo "Current version ${name} was moved to $backupdir$currentdate"
+  if test -f ${basedir}/${name}; then
+    mkdir -p ${backupdir}/${currentdate}/
+    #mv ${basedir}/${name} ${backupdir}/${currentdate}/${name}
+    copy ${basedir}/${name} ${backupdir}/${currentdate}/${name}
+    echo "Current version ${name} was moved to ${backupdir}/${currentdate}"
+  fi
 }
 
 download(){
