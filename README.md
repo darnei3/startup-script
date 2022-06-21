@@ -5,7 +5,7 @@ You just need the following variables to your own:
 1. name="demo-0.0.1.jar" - Name of your JAR
 2. basedir="/home/dev/demo" - The directory for your JAR
 3. backupdir="/home/dev/demo/backup" - The directory where you want to save the JAR backup before updating
-4. downloadurl=http://HOST:PORT/REPOSITORYPATH/0.0.1/demo-0.0.1.jar - The url of your repository for the JAR download
+4. downloadurl="http://HOST:PORT/REPOSITORYPATH/0.0.1/demo-0.0.1.jar" - The url of your repository for the JAR download
 
 You can use this script as follows:
 (sudo) bash start.sh download - Downloads the JAR to the base directory at the specified URL
