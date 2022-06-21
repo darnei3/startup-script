@@ -24,9 +24,9 @@ update() {
 }
 
 backup(){
-  mkdir -p ${BACKUP_DIR}/${CURRENT_DATE}
-  mv ${APP_FOLDER} ${BACKUP_DIR}
-	echo "Current version $APP_NAME was deleted"
+  mkdir -p ${BACKUP_DIR}/${CURRENT_DATE}/
+  mv ${APP_FOLDER} ${BACKUP_DIR}/${CURRENT_DATE}/${APP_NAME}
+	echo "Current version $APP_NAME was moved to $BACKUP_DIR/$CURRENT_DATE"
 }
 
 
