@@ -96,7 +96,7 @@ start
 update
 ;;
 "download")
-update
+download
 ;;
 "backup")
 backup
