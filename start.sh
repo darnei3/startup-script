@@ -19,6 +19,7 @@ update() {
   stop
   rm ${basedir}/${name}
   mv ${basedir}/temp/${name} ${basedir}/${name}
+  echo "Last version ${name} was moved to ${basedir}"
   if test -f "${basedir}/${name}"; then
     echo -n "${name} last change time: "
     stat -c '%y' ${basedir}/${name}
@@ -38,10 +39,10 @@ backup(){
 
 download(){
   if [ -d "${basedir}/temp" ]; then
-    echo "${basedir}/temp will used for download"
+    echo "Directory ${basedir}/temp will used for download"
   else
     mkdir ${basedir}/temp
-    echo "${basedir}/temp created and will used for download"
+    echo "Directory ${basedir}/temp created and will used for download"
   fi
   if test -f ${basedir}/temp/${name}; then
     echo "$name already downloaded"
