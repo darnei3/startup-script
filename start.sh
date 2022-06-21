@@ -35,7 +35,7 @@ download(){
 
  # Использовать инструкции, используемые для запроса входных параметров
 usage() {
- echo "Использование: sh сценарий name.sh [начало | остановка | перезапуск | статус]"
+ echo "Использование: sh сценарий start.sh [start | stop | restart | status | download | update | backup]"
 exit 1
 }
 
@@ -93,6 +93,9 @@ case "$1" in
 start
 ;;
 "update")
+update
+;;
+"download")
 update
 ;;
 "backup")
