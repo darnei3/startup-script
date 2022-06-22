@@ -22,6 +22,8 @@ update() {
     echo -n "${name} last change time: "
     stat -c '%y' ${basedir}/${name}
     echo "UPDATE WAS SUCCESSFUL"
+  else
+    echo "Something went wrong"
   fi
   start
 }
